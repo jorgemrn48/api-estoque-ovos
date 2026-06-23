@@ -38,6 +38,10 @@ app.get('/hello-pug', (req, res) => {
 //Swagger UI:
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.get('/', (req, res) => {
+    res.json({message: "API online e rodando no Render!"});
+})
+
 //Middleware de Rota não encontrada
 app.use((req, res, next) => {
     res.status(404).json({mensagem: "Rota solicitada não existe"});
