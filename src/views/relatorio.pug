@@ -1,0 +1,34 @@
+extends layouts/main.pug
+
+block content
+    .container
+        h1.header-title Acerto de Contas da Distribuição
+        
+        .card
+            h2 📦 Dados do Lote
+            p <strong>Identificador do Lote:</strong> #{relatorio.id_lote}
+            p <strong>Valor Total do Boleto:</strong> R$ #{Number(relatorio.valor_total_boleto).toFixed(2)}
+            p <strong>Custo Rateado por Bandeja:</strong> R$ #{relatorio.custo_rateado_por_bandeja}
+        
+        .card
+            h2 🤝 Rateio da Equipe
+            table
+                thead
+                    tr
+                        th Vendedor
+                        th Normais
+                        th Trincados
+                        th Pequenos
+                        th Jumbo
+                        th Valor a Transferir
+                tbody
+                    each conta in relatorio.relatorio_pagamento
+                        tr
+                            td <strong>#{conta.vendedor}</strong>
+                            td #{conta.ovos_normais_pegos}
+                            td #{conta.ovos_trincados_pegos}
+                            td #{conta.ovos_pequenos_pegos}
+                            td #{conta.ovos_jumbo_pegos}
+                            td.valor-financeiro R$ #{conta.valor_a_transferir}
+        
+        p.aviso * Este relatório é gerado automaticamente com base nas retiradas e no rateio do custo do boleto.

@@ -1,0 +1,99 @@
+{
+  "vendedores": [
+    {
+      "id": "2d353b61-25e9-459e-9c73-8b262c8570a1",
+      "nome": "Jorge",
+      "telefone": "84988001111",
+      "login": "jorge.f",
+      "senha": "$2b$10$xe4wV8ZawX60CtsyE3qMxOD7JsLurGM5PO.sLZR2dzLjns8aMfrwC",
+      "role": "admin"
+    },
+    {
+      "id": "8d1d4dc7-c214-4fd4-8dbf-f6ada8946839",
+      "nome": "Isabelli",
+      "telefone": "84988490000",
+      "login": "isabelli.v",
+      "senha": "$2b$10$aBNFD7YUekiIFr7uIiw54.aJG8ZIPQ2QM6X9JI9LvClJIiXiNHp3y",
+      "role": "vendedor"
+    },
+    {
+      "id": "f216e0b3-7a45-4684-87da-1c178fb23d73",
+      "nome": "Cibelli",
+      "telefone": "84911111111",
+      "login": "cibelli.v",
+      "role": "vendedor",
+      "senha": "$2b$10$fyj1ow1S2YCuV1RyGU6MR.EDDVeKQ4OA6CZ0mA8WueZxKQq.EtAu."
+    }
+  ],
+  "lotes": [
+    {
+      "id": "7a32aca1-5755-490f-a56c-a60d46fd3cae",
+      "data_recebimento": "2026-05-03",
+      "valor_boleto": 2600,
+      "data_vencimento": "2026-05-08",
+      "quantidade_ovos": 400,
+      "preco_nota": 6,
+      "status": "esgotado",
+      "classificacao": {
+        "qtd_normal": 0,
+        "qtd_trincado": 0,
+        "qtd_pequeno": 0,
+        "qtd_jumbo": 0,
+        "qtd_desperdicio": 50
+      },
+      "custo_unitario_normal": 8
+    }
+  ],
+  "retiradas": [
+    {
+      "id": "e0793d34-996b-4258-baa0-7a8f7d3dfc5e",
+      "data_hora": "2026-05-14T10:16:48.885Z",
+      "vendedor_id": "2d353b61-25e9-459e-9c73-8b262c8570a1",
+      "lote_id": "7a32aca1-5755-490f-a56c-a60d46fd3cae",
+      "qtd_normal": "50",
+      "qtd_trincado": "50",
+      "qtd_pequeno": "0",
+      "qtd_jumbo": "0"
+    },
+    {
+      "id": "e52b7e19-32c2-4e1f-9d92-92e287574417",
+      "data_hora": "2026-05-14T10:17:28.218Z",
+      "vendedor_id": "8d1d4dc7-c214-4fd4-8dbf-f6ada8946839",
+      "lote_id": "7a32aca1-5755-490f-a56c-a60d46fd3cae",
+      "qtd_normal": "75",
+      "qtd_trincado": "0",
+      "qtd_pequeno": "10",
+      "qtd_jumbo": "0"
+    },
+    {
+      "id": "0f38fa2d-0a65-4818-ba88-3b6895c4c10e",
+      "data_hora": "2026-05-14T10:18:15.456Z",
+      "vendedor_id": "8d1d4dc7-c214-4fd4-8dbf-f6ada8946839",
+      "lote_id": "7a32aca1-5755-490f-a56c-a60d46fd3cae",
+      "qtd_normal": "25",
+      "qtd_trincado": "30",
+      "qtd_pequeno": "0",
+      "qtd_jumbo": "20"
+    },
+    {
+      "id": "48184bc2-7c57-40fe-981d-b2bc76013290",
+      "data_hora": "2026-05-14T10:19:12.948Z",
+      "vendedor_id": "2d353b61-25e9-459e-9c73-8b262c8570a1",
+      "lote_id": "7a32aca1-5755-490f-a56c-a60d46fd3cae",
+      "qtd_normal": "100",
+      "qtd_trincado": "20",
+      "qtd_pequeno": "10",
+      "qtd_jumbo": "0"
+    },
+    {
+      "id": "448a32a2-2dd5-459a-a991-d86f60862495",
+      "data_hora": "2026-05-14T10:19:52.580Z",
+      "vendedor_id": "8d1d4dc7-c214-4fd4-8dbf-f6ada8946839",
+      "lote_id": "7a32aca1-5755-490f-a56c-a60d46fd3cae",
+      "qtd_normal": "50",
+      "qtd_trincado": "0",
+      "qtd_pequeno": "0",
+      "qtd_jumbo": "10"
+    }
+  ]
+}
