@@ -1,12 +1,15 @@
 import { connectDB } from './config/database.js';
 
-const PORTA = 3000;
+const PORTA = process.env.PORT || 3000;
 
 await connectDB();
 
 const { default: app } = await import('./app.js');
 
+app.get('/', (req, res) => {
+    res.json({message: "API online e rodando no Render!"});
+})
+
 app.listen(PORTA, () => {
-    console.log(`Servidor rodando em http://localhost:${PORTA}`);
-    console.log(`API disponível em http://localhost:${PORTA}/api`);
+    console.log(`Servidor rodando na porta ${PORTA}`);
 });
