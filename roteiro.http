@@ -1,0 +1,162 @@
+### VARIÁVEIS GLOBAIS DA APRESENTAÇÃO
+#@baseUrl = https://api-estoque-ovos.onrender.com/api
+@baseUrl = http://localhost:3000/api
+# Cole o token gerado no passo 1 aqui dentro para não precisar colar em toda requisição:
+@token = COLOQUE_O_TOKEN_AQUI_APOS_O_LOGIN
+@idVendedorTeste = COLAR_ID
+@idLoteTeste = COLAR_ID
+
+
+### ==========================================
+### 1. ROTA PÚBLICA (ABERTA)
+### ==========================================
+
+### Login de Vendedor (Gera o Token JWT)
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "login": "jorge.f",
+  "senha": "12345678"
+}
+
+
+### ==========================================
+### 2. ROTAS PROTEGIDAS POR PAPEL (ADMIN)
+### ==========================================
+
+### Cadastrar Novo Vendedor (sucesso)
+POST {{baseUrl}}/vendedores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nome": "Pedro",
+  "telefone": "84999999999",
+  "login": "pedro.vendas",
+  "senha": "123",
+  "role": "vendedor"
+}
+
+### Cadastrar Novo Vendedor (erro)
+POST {{baseUrl}}/vendedores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "nome": "a",
+    "telefone": "84988881111",
+    "login": "teste.a",
+    "senha": "12345",
+    "role": "vendedor"
+}
+
+### Verificar Todos os Vendedores
+GET {{baseUrl}}/vendedores
+Authorization: Bearer {{token}}
+
+### Verificar Vendedor Específico (sucesso)
+GET {{baseUrl}}/vendedores/{{idVendedorTeste}}
+Authorization: Bearer {{token}}
+
+### Verificar Vendedor Inexistente (erro)
+GET {{baseUrl}}/vendedores/000000000000000000000000
+Authorization: Bearer {{token}}
+
+### Atualizar Informações Sobre Vendedor (sucesso)
+PATCH {{baseUrl}}/vendedores/{{idVendedorTeste}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "telefone": "84911112222"
+}
+
+### Deletar Vendedor
+DELETE {{baseUrl}}/vendedores/{{idVendedorTeste}}
+Authorization: Bearer {{token}}
+
+### ==========================================
+### ROTAS DE LOTES (ADMIN)
+### ==========================================
+
+### Cadastrar Novo Lote no Estoque (sucesso)
+POST {{baseUrl}}/lotes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "data_recebimento": "2026-06-20",
+  "quantidade_ovos": 300,
+  "preco_nota": 6.5,
+  "valor_boleto": 1950.00,
+  "data_vencimento": "2026-06-24"
+}
+
+### Cadastrar Novo Lote no Estoque (erro)
+POST {{baseUrl}}/lotes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "data_recebimento": "20",
+  "quantidade_ovos": 300,
+  "preco_nota": 6.5.00,
+  "valor_boleto": 1950.00,
+  "data_vencimento": "2026-06-24"
+}
+
+### Classificar Lote Cadastrado
+PATCH {{baseUrl}}/lotes/{{idLoteTeste}}/classificar
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "normais": 250,
+    "trincados": 20,
+    "pequenos": 15,
+    "jumbo": 10,
+    "desperdicio": 5 
+}
+
+### Verificar Todas as Retiradas do Sistema (Visão admin)
+GET {{baseUrl}}/retiradas
+Authorization: Bearer {{token}}
+
+### ==========================================
+### 3. ROTAS PROTEGIDAS POR AUTENTICAÇÃO
+### ==========================================
+
+### Registrar Nova Retirada de Ovos (Qualquer Vendedor)
+POST {{baseUrl}}/retiradas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "lote_id": "{{idLoteTeste}}"",
+  "qtd_normal": 150,
+  "qtd_jumbo": 30,
+  "qtd_pequeno": 0,
+  "qtd_trincado": 5
+}
+
+### Registrar Nova Retirada de Ovos (erro)
+POST {{baseUrl}}/retiradas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "lote_id": "",
+    "qtd_normal": 30,
+    "qtd_pequeno": 0,
+    "qtd_jumbo": 10,
+    "qtd_trincado": 0
+}
+
+### Consultar Histórico de Retiradas do Vendedor Logado
+GET {{baseUrl}}/retiradas
+Authorization: Bearer {{token}}
+
+### Tentar acessar rota que não existe (Erro 404 Customizado)
+GET {{baseUrl}}/rota-inventada-para-dar-erro
+

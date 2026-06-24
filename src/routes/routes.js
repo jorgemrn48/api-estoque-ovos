@@ -12,7 +12,7 @@ const router = Router();
 
 /**
  * @swagger
- * /login:
+ * /api/login:
  *  post:
  *      summary: Autentica um vendedor e retorna um token JWT
  *      requestBody:
@@ -24,10 +24,10 @@ const router = Router();
  *                      properties:
  *                          login:
  *                              type: string
- *                              example: "jorge.f"
+ *                              example: "admin_user"
  *                          senha:
  *                              type: string
- *                              example: "12345678"
+ *                              example: "123456"
  *      responses:
  *          200:
  *              description: Login bem sucedido
@@ -40,7 +40,7 @@ router.use(authMiddleware);
 
 /**
  * @swagger
- * /vendedores:
+ * /api/vendedores:
  *  get:
  *      summary: Retorna lista de vendedores cadastrados
  *      responses:
@@ -66,14 +66,14 @@ router.use(authMiddleware);
  *              description: vendedor cadastrado com sucesso
  *          400:
  *              description: não foi possivel cadastrar o vendedor
- * /vendedores/{id}:
+ * /api/vendedores/{id}:
  *  get:
  *      summary: Busca vendedor dono do ID fornecido
  *      parameters:
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID do vendedor (UUID)
+ *            description: ID do vendedor (ObjectID do MongoDB)
  *            schema:
  *                type: string
  *      responses:
@@ -87,7 +87,7 @@ router.use(authMiddleware);
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID do vendedor (UUID)
+ *            description: ID do vendedor (ObjectID do MongoDB)
  *            schema:
  *                type: string
  *      responses:
@@ -101,7 +101,7 @@ router.use(authMiddleware);
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID do vendedor (UUID)
+ *            description: ID do vendedor (ObjectID do MongoDB)
  *            schema:
  *                type: string
  *      responses:
@@ -121,7 +121,7 @@ router.delete('/vendedores/:id', checkRole('admin'), VendedorController.deletarV
 
 /**
  * @swagger
- * /lotes:
+ * /api/lotes:
  *  get:
  *      summary: Retorna lista de lotes cadastrados
  *      responses:
@@ -156,14 +156,14 @@ router.delete('/vendedores/:id', checkRole('admin'), VendedorController.deletarV
  *              description: lote cadastrado com sucesso
  *          400:
  *              description: não foi possível cadastrar o lote
- * /lotes/{id}:
+ * /api/lotes/{id}:
  *  get:
  *      summary: Busca lote dono do ID fornecido
  *      parameters:
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID do lote (UUID)
+ *            description: ID do lote (ObjectID do MongoDB)
  *            schema: 
  *                type: string
  *      responses:
@@ -177,7 +177,7 @@ router.delete('/vendedores/:id', checkRole('admin'), VendedorController.deletarV
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID do lote (UUID)
+ *            description: ID do lote (ObjectID do MongoDB)
  *            schema:
  *                type: string
  *      responses:
@@ -185,14 +185,14 @@ router.delete('/vendedores/:id', checkRole('admin'), VendedorController.deletarV
  *              description: Lote atualizado com sucesso
  *          404: 
  *              description: Lote não encontrado
- * /lotes/{id}/classificar:
+ * /api/lotes/{id}/classificar:
  *  patch:
  *      summary: Classifica o lote e calcula o custo unitário
  *      parameters:
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID do lote (UUID) a ser classificado
+ *            description: ID do lote a ser classificado
  *            schema:
  *                type: string
  *      requestBody:
@@ -235,7 +235,7 @@ router.patch('/lotes/:id/classificar', checkRole('admin'), LoteController.classi
 
 /**
  * @swagger
- * /retiradas:
+ * /api/retiradas:
  *  get:
  *      summary: Retorna lista de retiradas cadastradas
  *      responses:
@@ -250,14 +250,9 @@ router.patch('/lotes/:id/classificar', checkRole('admin'), LoteController.classi
  *                  schema:
  *                      type: object
  *                      properties:
- *                          vendedorID:
- *                              type: string
- *                              format: uuid
- *                              example: "2d353b61-25e9-459e-9c73-8b262c8570a1"
  *                          loteID:
  *                              type: string
- *                              format: uuid
- *                              example: "7a32aca1-5755-490f-a56c-a60d46fd3cae"
+ *                              example: "64f1b2c3e4d5a6b7c8d9e0f1"
  *                          qtdNormal: 
  *                              type: integer
  *                              example: 100
@@ -277,14 +272,14 @@ router.patch('/lotes/:id/classificar', checkRole('admin'), LoteController.classi
  *              description: não foi possível cadastrar retirada
  *          404:
  *              description: não foi possível cadastrar retirada (Lote ou Vendedor não encontrados)
- * /retiradas/{id}:
+ * /api/retiradas/{id}:
  *  get:
  *      summary: Busca retirada específica por ID
  *      parameters:
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID da retirada (UUID)
+ *            description: ID da retirada (ObjectID do MongoDB)
  *            schema:
  *                type: string
  *      responses:
@@ -298,7 +293,7 @@ router.patch('/lotes/:id/classificar', checkRole('admin'), LoteController.classi
  *          - in: path
  *            name: id
  *            required: true
- *            description: ID da retirada (UUID)
+ *            description: ID da retirada (ObjectID do MongoDB)
  *            schema:
  *                type: string
  *      responses:
