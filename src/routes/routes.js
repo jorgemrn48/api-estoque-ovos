@@ -202,19 +202,19 @@ router.delete('/vendedores/:id', checkRole('admin'), VendedorController.deletarV
  *                  schema: 
  *                      type: object
  *                      properties:
- *                          normais:
+ *                          qtd_normal:
  *                              type: integer
  *                              example: 1000
- *                          trincados:
+ *                          qtd_trincado:
  *                              type: integer
  *                              example: 200
- *                          pequenos:
+ *                          qtd_pequeno:
  *                              type: integer
  *                              example: 50
- *                          jumbo:
+ *                          qtd_jumbo:
  *                              type: integer
  *                              example: 50
- *                          desperdicio:
+ *                          qtd_desperdicio:
  *                              type: integer
  *                              example: 100
  *      responses:

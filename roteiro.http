@@ -2,9 +2,11 @@
 #@baseUrl = https://api-estoque-ovos.onrender.com/api
 @baseUrl = http://localhost:3000/api
 # Cole o token gerado no passo 1 aqui dentro para não precisar colar em toda requisição:
-@token = COLOQUE_O_TOKEN_AQUI_APOS_O_LOGIN
-@idVendedorTeste = COLAR_ID
-@idLoteTeste = COLAR_ID
+#@token = COLOQUE_O_TOKEN_AQUI_APOS_O_LOGIN
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFmMDE4YjU5LTlkY2MtNGM3NS05YzA4LWJkMWFmOWJjYzc1ZCIsImxvZ2luIjoiam9yZ2UuZiIsIm5vbWUiOiJKb3JnZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4MjI2NDI0MSwiZXhwIjoxNzgyMjY3ODQxfQ.wZ_uYKRMC4D_hPwohX7tmefalmu32giE5jHy-OTFR38
+#@idVendedorTeste = COLAR_ID
+@idVendedorTeste = a5e72e2d-7ba2-43a4-bfbd-9798ab37663c
+@idLoteTeste = 228c8a35-5d37-453d-87f1-b28104c15bea
 
 
 ### ==========================================
@@ -80,6 +82,10 @@ Authorization: Bearer {{token}}
 ### ROTAS DE LOTES (ADMIN)
 ### ==========================================
 
+### Verificar Todos os Lotes
+GET {{baseUrl}}/lotes
+Authorization: Bearer {{token}}
+
 ### Cadastrar Novo Lote no Estoque (sucesso)
 POST {{baseUrl}}/lotes
 Authorization: Bearer {{token}}
@@ -112,11 +118,11 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "normais": 250,
-    "trincados": 20,
-    "pequenos": 15,
-    "jumbo": 10,
-    "desperdicio": 5 
+    "qtd_normal": 250,
+    "qtd_trincado": 20,
+    "qtd_pequeno": 15,
+    "qtd_jumbo": 10,
+    "qtd_desperdicio": 5 
 }
 
 ### Verificar Todas as Retiradas do Sistema (Visão admin)
@@ -133,9 +139,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "lote_id": "{{idLoteTeste}}"",
-  "qtd_normal": 150,
-  "qtd_jumbo": 30,
+  "lote_id": "{{idLoteTeste}}",
+  "qtd_normal": 15,
+  "qtd_jumbo": 0,
   "qtd_pequeno": 0,
   "qtd_trincado": 5
 }
